@@ -835,17 +835,23 @@ class Plot(Main):
             + ' & PE(' + str(self.factorPE) + ')')
 
         srr = []
-        for indx in range(0, self.time_rec, 1):
-            srr.append(indx/(self.time_rec/((self.sample_value*31.25*self.time_rec)/1000)))
+        try:
 
-        for ind in range(0, self.numOfIterations * 2, 2):
-            plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEAll[ind][:]))
-            plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEAll[ind + 1][:]))
+            for indx in range(0, self.time_rec, 1):
+                srr.append(indx/(self.time_rec/((self.sample_value*31.25*self.time_rec)/1000)))
 
-        plt.xlabel('Time[ms]')
-        plt.ylabel('[Counts]')
-        plt.savefig(self.dir_plot + '\PtpvcmdPe.png')
-        plt.close()
+            for ind in range(0, self.numOfIterations * 2, 2):
+                plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEAll[ind][:]))
+                plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEAll[ind + 1][:]))
+
+            plt.xlabel('Time[ms]')
+            plt.ylabel('[Counts]')
+            plt.savefig(self.dir_plot + '\PtpvcmdPe.png')
+            plt.close()
+
+        except ValueError:
+            pass
+
 
         if self.feedbacktype_val is 12:
 
@@ -861,17 +867,23 @@ class Plot(Main):
                 + ' & PE(' + str(self.factorPE) + ')')
 
             srr = []
-            for indx in range(0, self.time_rec, 1):
-                srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
+            try:
 
-            for ind in range(0, self.numOfIterations * 2, 2):
-                plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEAll[ind][:]))
-                plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEAll[ind + 1][:]))
+                for indx in range(0, self.time_rec, 1):
+                    srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
 
-            plt.xlabel('Time[ms]')
-            plt.ylabel('[Counts]')
-            plt.savefig(self.dir_plot + '\PtpvcmdPe_nofac.png')
-            plt.close()
+                for ind in range(0, self.numOfIterations * 2, 2):
+                    plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEAll[ind][:]))
+                    plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEAll[ind + 1][:]))
+
+                plt.xlabel('Time[ms]')
+                plt.ylabel('[Counts]')
+                plt.savefig(self.dir_plot + '\PtpvcmdPe_nofac.png')
+                plt.close()
+
+            except ValueError:
+                pass
+
             self.factorPE = 0.002
         # plt.show()
 
@@ -879,24 +891,31 @@ class Plot(Main):
 
         print("Plotting All ICMD profile record ...")
         srr = []
-        for indx in range(0, self.time_rec, 1):
-            srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
 
-        for ind in range(0, self.numOfIterations * 2, 2):
-            plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_icmd, self.MatrixICMDAll[ind][:]))
-            plt.plot(srr[:], self.MatrixICMDAll[ind + 1][:])
+        try:
 
-        # plt.xlim([0, 1950])
-        plt.xlim([0, (self.sample_value * 31.25 * self.time_rec) / 1000])
-        # plt.figure(1)
-        plt.grid()
-        plt.title('PTPVCMD(' + self.traj_array[1] + '[rpm/s]' + ')' + ' *factor(' + str(self.factor_ptpvcmd_icmd) + ')'
-                  + ' & ICMD[A]')
 
-        plt.xlabel('Time[ms]')
-        plt.ylabel('[A]')
-        plt.savefig(self.dir_plot + '\PtpvcmdIcmd.png')
-        plt.close()
+            for indx in range(0, self.time_rec, 1):
+                srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
+
+            for ind in range(0, self.numOfIterations * 2, 2):
+                plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_icmd, self.MatrixICMDAll[ind][:]))
+                plt.plot(srr[:], self.MatrixICMDAll[ind + 1][:])
+
+            # plt.xlim([0, 1950])
+            plt.xlim([0, (self.sample_value * 31.25 * self.time_rec) / 1000])
+            # plt.figure(1)
+            plt.grid()
+            plt.title('PTPVCMD(' + self.traj_array[1] + '[rpm/s]' + ')' + ' *factor(' + str(self.factor_ptpvcmd_icmd) + ')'
+                      + ' & ICMD[A]')
+
+            plt.xlabel('Time[ms]')
+            plt.ylabel('[A]')
+            plt.savefig(self.dir_plot + '\PtpvcmdIcmd.png')
+            plt.close()
+
+        except ValueError:
+            pass
 
         # plt.show()
 
@@ -913,17 +932,22 @@ class Plot(Main):
                   + ' & PE(' + str(self.factorPE) + ')')
 
         srr = []
-        for indx in range(0, self.time_rec, 1):
-            srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
+        try:
 
-        for ind in range(0, self.numOfIterations * 2, 2):
-            plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEDec[ind][:]))
-            plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEDec[ind + 1][:]))
+            for indx in range(0, self.time_rec, 1):
+                srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
 
-        plt.xlabel('Time[ms]')
-        plt.ylabel('[Counts]')
-        plt.savefig(self.dir_plot + '\PtpvcmdPeDec.png')
-        plt.close()
+            for ind in range(0, self.numOfIterations * 2, 2):
+                plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEDec[ind][:]))
+                plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEDec[ind + 1][:]))
+
+            plt.xlabel('Time[ms]')
+            plt.ylabel('[Counts]')
+            plt.savefig(self.dir_plot + '\PtpvcmdPeDec.png')
+            plt.close()
+
+        except ValueError:
+            pass
 
         if self.feedbacktype_val is 12:
             # == this part of code with factor 1 for PE ==
@@ -932,25 +956,30 @@ class Plot(Main):
                 self.calc_factor()
 
             srr = []
-            for indx in range(0, self.time_rec, 1):
-                srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
+            try:
 
-            # plt.xlim([0, 1950])
-            plt.xlim([0, (self.sample_value * 31.25 * self.time_rec) / 1000])
+                for indx in range(0, self.time_rec, 1):
+                    srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
 
-            plt.grid()
-            plt.title(
-                'PTPVCMD(' + self.traj_array[1] + '[rpm/s]' + ')' + ' *factor(' + str(self.factor_ptpvcmd_pe) + ')'
-                + ' & PE(' + str(self.factorPE) + ')')
+                # plt.xlim([0, 1950])
+                plt.xlim([0, (self.sample_value * 31.25 * self.time_rec) / 1000])
 
-            for ind in range(0, self.numOfIterations * 2, 2):
-                plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEDec[ind][:]))
-                plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEDec[ind + 1][:]))
+                plt.grid()
+                plt.title(
+                    'PTPVCMD(' + self.traj_array[1] + '[rpm/s]' + ')' + ' *factor(' + str(self.factor_ptpvcmd_pe) + ')'
+                    + ' & PE(' + str(self.factorPE) + ')')
 
-            plt.xlabel('Time[ms]')
-            plt.ylabel('[Counts]')
-            plt.savefig(self.dir_plot + '\PtpvcmdPeDec_nofac.png')
-            plt.close()
+                for ind in range(0, self.numOfIterations * 2, 2):
+                    plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEDec[ind][:]))
+                    plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEDec[ind + 1][:]))
+
+                plt.xlabel('Time[ms]')
+                plt.ylabel('[Counts]')
+                plt.savefig(self.dir_plot + '\PtpvcmdPeDec_nofac.png')
+                plt.close()
+            except ValueError:
+                pass
+
             self.factorPE = 0.002
         # plt.show()
 
@@ -958,24 +987,27 @@ class Plot(Main):
 
         print("Plotting Dec ICMD profile record ...")
         srr = []
-        for indx in range(0, self.time_rec, 1):
-            srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
+        try:
 
-        for ind in range(0, self.numOfIterations * 2, 2):
-            plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_icmd, self.MatrixICMDDec[ind][:]))
-            plt.plot(srr[:], self.MatrixICMDDec[ind + 1][:])
+            for indx in range(0, self.time_rec, 1):
+                srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
 
-        # plt.xlim([0, 1950])
-        plt.xlim([0, (self.sample_value * 31.25 * self.time_rec) / 1000])
-        # plt.figure(1)
-        plt.grid()
-        plt.title('PTPVCMD(' + self.traj_array[1] + '[rpm/s]' + ')' + ' *factor(' + str(self.factor_ptpvcmd_icmd) + ')'
-                  + ' & ICMD[A]')
-        plt.xlabel('Time[ms]')
-        plt.ylabel('[A]')
-        plt.savefig(self.dir_plot + '\PtpvcmdIcmdDec.png')
-        plt.close()
+            for ind in range(0, self.numOfIterations * 2, 2):
+                plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_icmd, self.MatrixICMDDec[ind][:]))
+                plt.plot(srr[:], self.MatrixICMDDec[ind + 1][:])
 
+            # plt.xlim([0, 1950])
+            plt.xlim([0, (self.sample_value * 31.25 * self.time_rec) / 1000])
+            # plt.figure(1)
+            plt.grid()
+            plt.title('PTPVCMD(' + self.traj_array[1] + '[rpm/s]' + ')' + ' *factor(' + str(self.factor_ptpvcmd_icmd) + ')'
+                      + ' & ICMD[A]')
+            plt.xlabel('Time[ms]')
+            plt.ylabel('[A]')
+            plt.savefig(self.dir_plot + '\PtpvcmdIcmdDec.png')
+            plt.close()
+        except ValueError:
+            pass
         # plt.show()
 
     def plot_rec_dec_pe_settling(self):
@@ -992,17 +1024,21 @@ class Plot(Main):
                   str(self.factor_ptpvcmd_pe) + ')' + ' & PE(' + str(self.factorPE) + ')')
 
         srr = []
-        for indx in range(0, self.time_rec, 1):
-            srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
+        try:
 
-        for ind in range(0, self.numOfIterations * 2, 2):
-            plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEDec[ind][:]), linewidth=5.0)
-            plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEDec[ind + 1][:]))
+            for indx in range(0, self.time_rec, 1):
+                srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
 
-        plt.xlabel('Time[ms]')
-        plt.ylabel('[Counts]')
-        plt.savefig(self.dir_plot + '\Settling.png')
-        plt.close()
+            for ind in range(0, self.numOfIterations * 2, 2):
+                plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEDec[ind][:]), linewidth=5.0)
+                plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEDec[ind + 1][:]))
+
+            plt.xlabel('Time[ms]')
+            plt.ylabel('[Counts]')
+            plt.savefig(self.dir_plot + '\Settling.png')
+            plt.close()
+        except ValueError:
+            pass
 
         if self.feedbacktype_val is 12:
             # == this part of code with factor 1 for PE ==
@@ -1019,19 +1055,22 @@ class Plot(Main):
                       str(self.factor_ptpvcmd_pe) + ')' + ' & PE(' + str(self.factorPE) + ')')
 
             srr = []
-            for indx in range(0, self.time_rec, 1):
-                srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
+            try:
 
-            for ind in range(0, self.numOfIterations * 2, 2):
-                plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEDec[ind][:]), linewidth=5.0)
-                plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEDec[ind + 1][:]))
+                for indx in range(0, self.time_rec, 1):
+                    srr.append(indx / (self.time_rec / ((self.sample_value * 31.25 * self.time_rec) / 1000)))
 
-            plt.xlabel('Time[ms]')
-            plt.ylabel('[Counts]')
-            plt.savefig(self.dir_plot + '\Settling_nofac.png')
-            plt.close()
-            self.factorPE = 0.002
+                for ind in range(0, self.numOfIterations * 2, 2):
+                    plt.plot(srr[:], np.multiply(self.factor_ptpvcmd_pe, self.MatrixPEDec[ind][:]), linewidth=5.0)
+                    plt.plot(srr[:], np.multiply(self.factorPE, self.MatrixPEDec[ind + 1][:]))
 
+                plt.xlabel('Time[ms]')
+                plt.ylabel('[Counts]')
+                plt.savefig(self.dir_plot + '\Settling_nofac.png')
+                plt.close()
+                self.factorPE = 0.002
+            except ValueError:
+                pass
         # plt.show()
 
     def plot_parameters(self):
