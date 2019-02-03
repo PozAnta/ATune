@@ -82,7 +82,7 @@ class Main:
             self.igrav = "1"
 
         self.feedbacktype_val = int(PortSerial.port("feedbacktype", self.nameComport, 0))
-        if self.feedbacktype_val == 12:  # If feedback SensAr set factor for PE=0.002
+        if (self.feedbacktype_val is 12) or (self.feedbacktype_val is 19):  # If feedback SensAr set factor for PE=0.002
             self.factorPE = 0.002
 
         self.directory = self.glob_dir_make(self.global_path)
@@ -808,7 +808,7 @@ class Support(Main):
         document.add_picture(self.dir_plot + '\PtpvcmdIcmdDec.png', width=Inches(5))
         document.add_picture(self.dir_plot + '\Settling.png', width=Inches(5))
 
-        if self.feedbacktype_val is 12:
+        if (self.feedbacktype_val is 12) or (self.feedbacktype_val is 19):
             document.add_paragraph('No factor for PE: \n')
             document.add_picture(self.dir_plot + '\PtpvcmdPe_nofac.png', width=Inches(5))
             document.add_picture(self.dir_plot + '\PtpvcmdPeDec_nofac.png', width=Inches(5))
@@ -852,8 +852,7 @@ class Plot(Main):
         except ValueError:
             pass
 
-
-        if self.feedbacktype_val is 12:
+        if (self.feedbacktype_val is 12) or (self.feedbacktype_val is 19):
 
             # == this part of code with factor 1 for PE ==
             self.factorPE = 1
@@ -949,7 +948,7 @@ class Plot(Main):
         except ValueError:
             pass
 
-        if self.feedbacktype_val is 12:
+        if (self.feedbacktype_val is 12) or (self.feedbacktype_val is 19):
             # == this part of code with factor 1 for PE ==
             self.factorPE = 1
             if self.smart_factor is True:
@@ -1040,7 +1039,7 @@ class Plot(Main):
         except ValueError:
             pass
 
-        if self.feedbacktype_val is 12:
+        if (self.feedbacktype_val is 12) or (self.feedbacktype_val is 19):
             # == this part of code with factor 1 for PE ==
             self.factorPE = 1
             if self.smart_factor is True:
