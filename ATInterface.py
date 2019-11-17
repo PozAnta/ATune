@@ -1,6 +1,6 @@
 from tkinter import *
 import serial
-import ATScript
+import ATScript_ver_01
 
 
 def exit_gui():
@@ -23,7 +23,7 @@ def ok():
     adv_options = [hdAvTuneVar.get(), hdFfTuneVar.get(), igrav_app.get()]
     mail_param = [mail_check.get(), mail_app.get(), mail_app_pass.get()]
 
-    tune = ATScript.Tune(name_tune.get(), parameters, int(numiterations.get()), port_var.get(), path.get(),
+    tune = ATScript_ver_01.Tune(name_tune.get(), parameters, int(numiterations.get()), port_var.get(), path.get(),
                          additional_parameters, mechSetup.get(), adv_traj, adv_options, mail_param,
                          smart_factor_check.get())
 

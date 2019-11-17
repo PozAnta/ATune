@@ -1,6 +1,8 @@
 import serial
 import time
 
+serial.Serial()
+
 def port(comnd, nameCom, Tx):
 
     ser = serial.Serial(nameCom, 115200, timeout=2, parity=serial.PARITY_NONE)  # open serial port
@@ -34,7 +36,7 @@ def port(comnd, nameCom, Tx):
             last2ch = chp+ch
             cmd = cmd+x
 
-        cmd1 = cmd[:len(cmd)-3] #delete "-->"
+        cmd1 = cmd[:len(cmd)-3] # delete "-->"
         if Tx == True:
             return cmd1
         else:
